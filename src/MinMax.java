@@ -1,48 +1,42 @@
 import java.util.Scanner;
 
 public class MinMax {
-    static Scanner scanner = new Scanner(System.in);
-    static int[] minToMax = new int[5];
-    public static void MinMax() {
-
+     Scanner scanner = new Scanner(System.in);
+     int[] minToMax = new int[5];
+    public MinMax() {
         System.out.println("Enter five numbers, one at the time. When you have entered " +
                 "five numbers, the highest and lowest number will be displayed in the console");
-
-        //OPS@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-        //Loops forever
+        userInput();
+        printValues();
+    }
+    private void userInput() {
         for (int i = 0; i < minToMax.length; i++) {
-            try{
-                minToMax[i] = scanner.nextInt();
-            }
-            catch (Exception e){
-                System.out.println("It has to be a integer number! Try again: ");
+            try {
+                minToMax[i] = Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException ignore) {
+                System.out.println("[ERROR]. You need to enter a whole number and then press enter ");
                 i--;
             }
         }
-        arraySorter();
     }
-    private static void arraySorter() {
-
-        System.out.println("Min value: " + lowestValueInArray());
-        System.out.println("Max value: " + highestValueInArray());
-    }
-
-    //Funkar inte med minus tal
-    private static int highestValueInArray (){
+    private int sortingHighestValue() {
         int highestValue = Integer.MIN_VALUE;
-        for(int i = 0; i < minToMax.length; i++){
-            if(i > highestValue){
-                highestValue = minToMax[i];
-            }
+        for (int i : minToMax) {
+            if (i > highestValue)
+                highestValue = i;
         }
         return highestValue;
     }
-    private static int lowestValueInArray(){
-        int lowestValue = Integer.MAX_VALUE;
-        for(int i = 0; i< minToMax.length; i++){
-            if(i < lowestValue)
-                lowestValue = minToMax[i];
+    private int sortingLowestValue() {
+        int smallestValue = Integer.MAX_VALUE;
+        for (int i : minToMax) {
+            if (i < smallestValue)
+                smallestValue = i;
         }
-        return lowestValue;
+        return smallestValue;
+    }
+    private void printValues() {
+        System.out.println("Min value: " + sortingLowestValue());
+        System.out.println("Max value: " + sortingHighestValue());
     }
 }

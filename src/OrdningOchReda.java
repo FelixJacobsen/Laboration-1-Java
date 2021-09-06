@@ -4,11 +4,16 @@ import java.util.Scanner;
 public class OrdningOchReda {
     private final int[] userNumbers = new int[5];
     Scanner scanner = new Scanner(System.in);
-
     public OrdningOchReda() {
         System.out.println("Enter five numbers, after you have entered a number continue to the next by pressing spacebar. After you have entered five numbers press enter. ");
         for (int i = 0; i < userNumbers.length; i++) {
+        try{
             userNumbers[i] = Integer.parseInt(scanner.next());
+
+        }catch(NumberFormatException ignore){
+            System.out.println("It has to be a number! Try again");
+            i--;
+            }
         }
         printValues();
     }
@@ -19,7 +24,7 @@ public class OrdningOchReda {
         return sumNumbers;
     }
 
-    private int sortingHighestValue() {
+    public int sortingHighestValue() {
         int highestValue = Integer.MIN_VALUE;
         for (int i : userNumbers) {
             if (i > highestValue)
@@ -27,7 +32,7 @@ public class OrdningOchReda {
         }
         return highestValue;
     }
-    private int sortingLowestValue() {
+    public int sortingLowestValue() {
         int smallestValue = Integer.MAX_VALUE;
         for (int i : userNumbers) {
             if (i < smallestValue)
@@ -61,7 +66,7 @@ public class OrdningOchReda {
         return secondSmallestValue;
     }
 
-    private boolean numbersSorter2() {
+    private boolean numbersSorter() {
         boolean sorter = true;
         for (int i = 0; i < userNumbers.length - 1; i++)
             if (userNumbers[i] > userNumbers[i + 1]) {
@@ -70,14 +75,13 @@ public class OrdningOchReda {
             }
         return sorter;
     }
-
     private void printValues() {
         System.out.println("Lowest value: " + sortingLowestValue());
         System.out.println("Second lowest value: " + sortingSecondLowestValue());
         System.out.println("Highest value: " + sortingHighestValue());
         System.out.println("Second highest value: " + sortingSecondHighestValue());
         System.out.println("Sum all numbers: " + sumNumbers());
-        System.out.println("In order " + numbersSorter2());
+        System.out.println("In order " + numbersSorter());
     }
 }
 
