@@ -18,13 +18,13 @@ public class Menu {
                   [2] Min max
                   [3] Sten Sax Påse
                   [4] Ordning och reda
-                  [E] Avsluta
+                  [E] Quit
                        """);
     }
     public void performAction(String userOption) {
         switch (userOption) {
             case "e" -> System.out.println("The program ends, thanks for playing! ");
-            case "1" -> new UppONEr();
+            case "1" -> new UppONer().run();
             case "2" -> new MinMax();
             case "3" -> new StenSaxPåse();
             case "4" -> new Test();
