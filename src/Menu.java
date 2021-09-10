@@ -27,7 +27,7 @@ public class Menu {
             case "1" -> new UppONEr();
             case "2" -> new MinMax();
             case "3" -> new StenSaxPåse();
-            case "4" -> new OrdningOchReda();
+            case "4" -> new Test();
             default -> {
                 System.out.print("You need to enter a number between 1-4 or \"E" + "\"! Try again");
                 System.out.println(" ");
